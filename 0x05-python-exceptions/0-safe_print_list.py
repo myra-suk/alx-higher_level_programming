@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 
-# Author: Myra Sukantet
-
 def safe_print_list(my_list=[], x=0):
-    
-    unit = 0
-    for i in range(x):
+        
+    index = 0
+    while True:
         try:
-            print("{}".format(my_list[i]), end='')
-            unit += 1
+            if index < x:
+                print(my_list[index], end='')
+                index += 1
+            else:
+                print()
+                return index
         except IndexError:
-            break
-
-    print()
-    return (count)
+            print()
+            return index
