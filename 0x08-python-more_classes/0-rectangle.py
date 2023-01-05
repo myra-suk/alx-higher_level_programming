@@ -3,7 +3,7 @@
 """Define a class Rectangle"""
 
 
-class Rectangie:
+class Rectangle:
     """
     Creates an empty class Rectangle
     """
