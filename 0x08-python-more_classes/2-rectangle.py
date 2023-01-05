@@ -9,11 +9,11 @@ class Rectangle:
     """Define the class Rectangle"""
 
     def __init__(self, width=0, height=0):
-        """Method that initializes the rectangle
+        """Method that initializes the Rectangle
 
         Args:
-            width: width of the rectangle
-            height: height of the rectangle
+            width: width of the Rectangle
+            height: height of the Rectangle
         """
         self.width = width
         self.height = height
@@ -71,7 +71,7 @@ class Rectangle:
             The area of the rectangle
         """
 
-        return self.width * self.height
+        return (self.__width * self.__height)
 
     def perimeter(self):
         """Metho that calulates the perimeter of the Rectangle
@@ -83,4 +83,4 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return 0
 
-        return (2 * self.width) + (2 * self.height)
+        return ((2 * self.width) + (2 * self.height))
