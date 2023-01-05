@@ -33,8 +33,8 @@ class Rectangle:
             No returns
 
         Raises:
-        TypeError: If the width is not an integer
-        ValueError: If the value of the width is less than 0
+            TypeError: If the width is not an integer
+            ValueError: If the value of the width is less than 0
         """
 
         if not isinstance(value, int):
@@ -50,6 +50,15 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
+        """Gets the attributes of the rectangle
+
+        Returns:
+            No returns
+
+        Raises:
+            TypeError: If the height is not an integer
+            ValueError: If the value of the height is less than 0
+        """
         if not isinstance(value, int):
             raise TypeError("Height must be of integral value")
         if value < 0:
