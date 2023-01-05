@@ -7,4 +7,6 @@ class Rectangie:
     """
     Creates an empty class Rectangle
     """
+
+
 pass
