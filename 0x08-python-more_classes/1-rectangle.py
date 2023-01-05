@@ -37,12 +37,11 @@ class Rectangle:
             ValueError: If the value of the width is less than 0
         """
 
-        if (type(value) != int):
+        if not isinstance(value, int):
             raise TypeError("Width must be of integral value")
-        elif (value < 0):
+        if (value < 0):
             raise ValueError("Width must be greater than or equal to 0")
-        else:
-            self.__width = value
+        self.__width = value
 
     @property
     def height(self):
@@ -60,9 +59,8 @@ class Rectangle:
             TypeError: If the height is not an integer
             ValueError: If the value of the height is less than 0
         """
-        if (type(value) != int):
+        if not isinstance(value, int):
             raise TypeError("Height must be of integral value")
-        elif (value < 0):
+        if value < 0:
             raise ValueError("Height must be greater than or equal to 0")
-        else:
-            self.__height = value
+        self.__height = value
