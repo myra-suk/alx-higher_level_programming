@@ -7,15 +7,15 @@ Class Rectangle which actually defines a rectangle
 
 class Rectangle:
     """
-    Class Rectangles which creates a rectangle with attributes
+    Define the class Rectangle whih creates a Rectangle
     """
 
     def __init__(self, width=0, height=0):
-        """ Method that initializes the rectangle
+        """ Method that initializes the Rectangle
 
         Args:
-            width: The width of the rectangle
-            height: The width of the rectangle
+            width: The width of the Rectangle
+            height: The width of the Rectangle
         """
         self.width = width
         self.height = height
@@ -23,7 +23,7 @@ class Rectangle:
     @property
     def width(self):
         """ Method that returns the value of the width of the rectangle"""
-        return (self.__width)
+        return self.__width
 
     @width.setter
     def width(self, value):
@@ -46,7 +46,7 @@ class Rectangle:
     @property
     def height(self):
         """ Method that returns the height of the rectangle"""
-        return (self.__height)
+        return self.__height
 
     @height.setter
     def height(self, value):
