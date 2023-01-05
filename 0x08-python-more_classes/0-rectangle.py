@@ -6,5 +6,5 @@
 class Rectangle
 
 
-"""Empty Class"""
+"""Creates an empty class Rectangle"""
 pass
