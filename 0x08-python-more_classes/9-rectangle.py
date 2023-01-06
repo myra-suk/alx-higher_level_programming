@@ -7,6 +7,7 @@ Class that defines a rectangle
 
 class Rectangle:
     """Defines the class Rectangle
+
     Attributes:
         number_of_instances (int): The number of Rectangle instances
         print_symbol (any): The symbol used for string representation
@@ -17,6 +18,7 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """Method that initializes the Rectangle
+
         Args:
             width: The width of the Rectangle
             height: The height of the Rectangle
@@ -33,8 +35,10 @@ class Rectangle:
     @width.setter
     def width(self, value):
         """Method that defines the width of the rectangle
+
         Return:
             No Returns
+
         Raises:
             TypeError: If the width is not an integer
             ValueError: If teh width is less than zero
@@ -54,8 +58,10 @@ class Rectangle:
     @height.setter
     def height(self, value):
         """Method that defines the height of the rectangle
+
         Return:
             No Return
+
         Raises:
             TypeError: If width is not an integer
             ValueError: If the width is less than the zero
@@ -74,11 +80,14 @@ class Rectangle:
         """
         return (self.__width * self.__height)
 
+    @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """Return the bigger rectangle based on the area of the two
+
         Args:
             rect_1: The first instance of a rectangle
             rect_2: The second instance of a rectangle
+
          Raises:
             TypeError: If none of the instances are rectangles
         """
@@ -90,8 +99,18 @@ class Rectangle:
             return (rect_1)
         return (rect_2)
 
+    @classmethod
+    def square(cls, size=0):
+        """ Returns a new rectangles instance
+
+        Args:
+            size (int): The width and height of the new instance
+        """
+        return (cls(size, size))
+
     def perimeter(self):
         """Method that calulates the perimeter of the Rectangle
+
         Returns:
             The perimeter of the rectangle
         """
