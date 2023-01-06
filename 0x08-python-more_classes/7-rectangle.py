@@ -23,7 +23,7 @@ class Rectangle:
             width: The width of the Rectangle
             height: The height of the Rectangle
         """
-        type(self).number_of_instances += 1
+        Rectangle.number_of_instances += 1
         self.width = width
         self.height = height
 
@@ -113,6 +113,6 @@ class Rectangle:
         return (rectangle)
 
     def __del__(self):
-        """Prints a message when the Rectangle is deleted."""
-        type(self).number_of_instances -= 1
+        """Prints a message when a Rectangle is deleted."""
+        Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
