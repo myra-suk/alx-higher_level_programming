@@ -8,12 +8,16 @@ Class that defines a rectangle
 class Rectangle:
     """Defines the class Rectangle"""
 
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """Method that initializes the Rectangle
+
         Args:
             width: The width of the Rectangle
             height: The height of the Rectangle
         """
+        type(self).number_of_instances += 1
         self.width = width
         self.height = height
 
@@ -25,8 +29,10 @@ class Rectangle:
     @width.setter
     def width(self, value):
         """Method that defines the width of the rectangle
+
         Return:
             No Returns
+
         Raises:
             TypeError: If the width is not an integer
             ValueError: If teh width is less than zero
@@ -46,8 +52,10 @@ class Rectangle:
     @height.setter
     def height(self, value):
         """Method that defines the height of the rectangle
+
         Return:
             No Return
+
         Raises:
             TypeError: If width is not an integer
             ValueError: If the width is less than the zero
@@ -61,6 +69,7 @@ class Rectangle:
 
     def area(self):
         """ Method that calulates the area of the Rectangle
+
         Returns:
             The area of the rectangle
         """
@@ -68,6 +77,7 @@ class Rectangle:
 
     def perimeter(self):
         """Method that calulates the perimeter of the Rectangle
+
         Returns:
             The perimeter of the rectangle
         """
@@ -98,4 +108,5 @@ class Rectangle:
 
     def __del__(self):
         """Prints a message when the Rectangle is deleted."""
+        type(self).number_of_instances -= 1
         print("Bye rectangle...")
