@@ -38,7 +38,7 @@ class Rectangle:
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
-            raise ValueError("width must be >=0")
+            raise ValueError("width must be >= 0")
         self.__width = value
 
     @property
@@ -87,13 +87,12 @@ class Rectangle:
     def __str__(self):
         """Method that returns the string character representation of
         the Rectangle"""
-
-        rectangle = " "
-
         if self.__width == 0 or self.__height == 0:
-            return rectangle
+            return("")
 
+        rectangle = []
         for i in range(self.__height):
-            rectangle += ("#" * self.__width) + "\n"
-
-        return rectangle[:-1]
+            [rectangle.append('#') for j in range(self.__width)]
+            if i != self.height - 1:
+                rectangle.append("\n")
+        return ("".join(rectangle))
