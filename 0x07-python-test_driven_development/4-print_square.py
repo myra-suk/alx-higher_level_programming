@@ -16,9 +16,9 @@ def print_square(size):
         ValueErrot: If size is less than O
     """
     if not isinstance(size, int):
-        raise TypeError("Size must be an integer value")
+        raise TypeError("size must be an integer")
     if size < 0:
-        raise ValueError("Size must be greater than or equal to 0")
+        raise ValueError("size must be >= 0")
 
     for i in range(size):
         [print("#", end="") for j in range(size)]
