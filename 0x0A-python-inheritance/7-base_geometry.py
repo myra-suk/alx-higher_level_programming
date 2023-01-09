@@ -10,7 +10,7 @@ class BaseGeometry:
         """Method that defines the area of a geometric shape"""
         raise Exception("area() is not implemented")
 
-    def integer_vallidator(self, name, value):
+    def integer_validator(self, name, value):
         """Method that receives the value property
 
         Args:
