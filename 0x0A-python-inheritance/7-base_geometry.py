@@ -8,7 +8,6 @@ class BaseGeometry:
 
     def area(self):
         """Method that defines the area of a geometric shape"""
-
         raise Exception("area() is not implemented")
 
     def integer_vallidator(self, name, value):
@@ -19,7 +18,6 @@ class BaseGeometry:
             value: value of the property
 
         """
-
         if type(value) is not int:
             raise TypeError("{} must be an integer".format(name))
         if value <= 0:
