@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
-"""Defines a base geometry Class BaseGeormetry"""
+"""Defines a base geometry Class BaseGeometry"""
 
 
 class BaseGeometry:
-    """Class that defines the attriutes of Geometric Shapes"""
+    """Class that represents Geometry"""
 
     def area(self):
         """Method that defines the area of a geometric shape"""
