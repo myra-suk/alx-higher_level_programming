@@ -75,7 +75,7 @@ class Base:
         try:
             with open(file_name, encoding="UTF8") as fd:
                 content = cls.from_json_string(fd.read())
-        except:
+        except IOerror:
             return []
 
         instances = []
@@ -158,6 +158,7 @@ class Base:
                                str(item["size"]) + "," +
                                str(item["x"]) + "," + str(item["y"]))
                     write_this.writerow(string)
+
     @classmethod
     def load_from_file_csv(cls):
         """This is my method"""
