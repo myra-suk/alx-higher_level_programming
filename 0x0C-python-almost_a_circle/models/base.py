@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
 """Creating athe base lass for all base classes for
-teh AirBnB Project"""
+the AirBnB Project"""
 
 import json
 import csv
+import os.path
 
 
 class Base:
@@ -13,153 +14,130 @@ class Base:
     Arguments:
         @id: The id for a specific instance
     """
-
-    __nb_objects = 0
+       __nb_objects = 0
 
     def __init__(self, id=None):
+        """ Initializes instances """
         if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
-            self.id = id
+            self.id = Base.__nb_objects
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Converting a dict into a json string"""
-        if list_ditionaries is None:
-            return '[]'
-        return json.dumps(list_ditionaries)
+        """ List to JSON string """
+        if list_dictionaries is None or list_dictionaries == "[]":
+            return "[]"
+        return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """ Save object in a file """
+        filename = "{}.json".format(cls.__name__)
+        list_dic = []
+
+        if not list_objs:
+            pass
+        else:
+            for i in range(len(list_objs)):
+                list_dic.append(list_objs[i].to_dictionary())
+
+        lists = cls.to_json_string(list_dic)
+
+        with open(filename, 'w') as f:
+            f.write(lists)
 
     @staticmethod
     def from_json_string(json_string):
-        """Returns a dict from a string"""
-        if json_string is None or len(json_string) == 0:
+        """ JSON string to dictionary """
+        if not json_string:
             return []
         return json.loads(json_string)
 
     @classmethod
-    def save_to_file(cls, list_objs):
-        """Writes the string representation of an object of a class
-        into a file"""
-        file_name = cls.__name__ + ".json"
-
-        content = []
-        if list_objs is not None:
-            for item in list_objs:
-                item = item.to_dictionary()
-                json_dict = json.loads(cls.to_json_string(item))
-                content.append(json_dict)
-
-        with open(file_name, mode="w") as fd:
-            json.dump(content, fd)
-
-    @classmethod
     def create(cls, **dictionary):
-        """Returns an instance with all the attributes already set"""
-        from models.rectangle import Rectangle
-        from models.square import Square
-
+        """ Create an instance """
         if cls.__name__ == "Rectangle":
-            r2 = Rectangle(3, 8)
-        elif cls.__name__ == "Square":
-            r2 = Square(5)
-        r2.update(**dictionary)
-        return (r2)
+            new = cls(10, 10)
+        else:
+            new = cls(10)
+        new.update(**dictionary)
+        return new
 
     @classmethod
     def load_from_file(cls):
-        """Loading dict representing the parameters for
-        and instance and from that creating instances"""
-        file_name = cls.__name__ + ".json"
+        """ Returns a list of instances """
+        filename = "{}.json".format(cls.__name__)
 
-        try:
-            with open(file_name, encoding="UTF8") as fd:
-                content = cls.from_json_string(fd.read())
-        except IOerror:
+        if os.path.exists(filename) is False:
             return []
 
-        instances = []
+        with open(filename, 'r') as f:
+            list_str = f.read()
 
-        for instance in content:
-            tmp = cls.create(**instance)
-            instances.append(tmp)
+        list_cls = cls.from_json_string(list_str)
+        list_ins = []
 
-        return instances
+        for index in range(len(list_cls)):
+            list_ins.append(cls.create(**list_cls[index]))
 
-    @staticmethod
-    def draw(list_rectangles, list_squares):
-        """Opens a window and draws all the squares and rectangles"""
-        import turtle
-
-        turtle.penup()
-        turtle.pensize(10)
-        turtle.bgcolor("black")
-        turtle.color("teal")
-        turtle.hideturtle()
-        turtle.goto(-300, 300)
-        turtle.speed(0)
-
-        for instance in list_rectangles:
-            turtle.pendown()
-            for i in range(2):
-                turtle.forward(instance.width)
-                turtle.right(90)
-                turtle.forward(instance.height)
-                turtle.right(90)
-            turtle.penup()
-            if instance.width < 100:
-                move_by = 200
-            else:
-                move_by = instance.width + 30
-            x_cordinate = round(turtle.xcor(), 5)
-            turtle.goto(x_cordinate + move_by, 300)
-
-        turtle.goto(-300, 100)
-        for instance in list_squares:
-            turtle.pendown()
-            for i in range(2):
-                turtle.forward(instance.width)
-                turtle.right(90)
-                turtle.forward(instance.height)
-                turtle.right(90)
-            turtle.penup()
-            if instance.width < 100:
-                move_by = 100
-            else:
-                move_by = instance.width + 30
-            x_cordinate = round(turtle.xcor(), 5)
-            turtle.goto(x_cordinate + move_by, 100)
-
-        turtle.exitonclick()
+        return list_ins
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """this is my method"""
-        file_name = cls.__name__ + ".csv"
+        """ Method that saves a CSV file """
+        filename = "{}.csv".format(cls.__name__)
 
-        with open(file_name, mode="w", newline='', encoding="UTF8") as fd:
-            write_this = csv.writer(fd, delimiter=" ")
+        if cls.__name__ == "Rectangle":
+            list_dic = [0, 0, 0, 0, 0]
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_dic = ['0', '0', '0', '0']
+            list_keys = ['id', 'size', 'x', 'y']
 
-            if cls.__name__ == "Rectangle":
-                for item in list_objs:
-                    string = ""
-                    item = item.to_dictionary()
-                    string += (str(item["id"]) + "," +
-                               str(item["width"]) + "," +
-                               str(item["height"]) + "," +
-                               str(item["x"]) + "," + str(item["y"]))
-                    write_this.writerow(string)
+        matrix = []
 
-            if cls.__name__ == "Square":
-                for item in list_objs:
-                    string = ""
-                    item = item.to_dictionary()
-                    string += (str(item["id"]) + "," +
-                               str(item["size"]) + "," +
-                               str(item["x"]) + "," + str(item["y"]))
-                    write_this.writerow(string)
+        if not list_objs:
+            pass
+        else:
+            for obj in list_objs:
+                for kv in range(len(list_keys)):
+                    list_dic[kv] = obj.to_dictionary()[list_keys[kv]]
+                matrix.append(list_dic[:])
+
+        with open(filename, 'w') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(matrix)
 
     @classmethod
     def load_from_file_csv(cls):
-        """This is my method"""
-        return ([])
+        """ Method that loads a CSV file """
+        filename = "{}.csv".format(cls.__name__)
+
+        if os.path.exists(filename) is False:
+            return []
+
+        with open(filename, 'r') as readFile:
+            reader = csv.reader(readFile)
+            csv_list = list(reader)
+
+        if cls.__name__ == "Rectangle":
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_keys = ['id', 'size', 'x', 'y']
+
+        matrix = []
+
+        for csv_elem in csv_list:
+            dict_csv = {}
+            for kv in enumerate(csv_elem):
+                dict_csv[list_keys[kv[0]]] = int(kv[1])
+            matrix.append(dict_csv)
+
+        list_ins = []
+
+        for index in range(len(matrix)):
+            list_ins.append(cls.create(**matrix[index]))
+
+        return list_ins
