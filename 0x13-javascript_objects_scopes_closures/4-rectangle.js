@@ -1,5 +1,5 @@
 #!/usr/bin/node
-// Defines a Rectangle//
+// class Rectangle that defines a rectangle
 
 class Rectangle {
   constructor (w, h) {
@@ -9,27 +9,28 @@ class Rectangle {
     }
   }
 
-  // Method to print the Rectangle
   print () {
-    let rect = '';
-    for (let i = 0; i < this.width; i++) {
-      rect += 'X';
-    }
-    for (let i = 0; i < this.height; i++) {
-      console.log(rect);
+    let i, j, string;
+    for (i = 0; i < this.height; i++) {
+      string = '';
+      for (j = 0; j < this.width; j++) {
+        string += 'X';
+      }
+      console.log(string);
     }
   }
 
-  // Method that exchanges the width and the height of the rectangle
   rotate () {
-    const holder = this.height;
+    let temp;
+    temp = this.height;
     this.height = this.width;
-    this.width = holder;
+    this.width = temp;
   }
 
-  // Method the width and height of the Rectangle by 2
   double () {
     this.height *= 2;
     this.width *= 2;
   }
 }
+
+module.exports = Rectangle;
