@@ -19,6 +19,6 @@ const Rectangle = class Rectangle {
       prints = '';
     }
   }
-};
+}
 
 module.exports = Rectangle;
