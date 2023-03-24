@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """
 Lists all values in the states tables of a database where name
 matches the argument in a safe way
