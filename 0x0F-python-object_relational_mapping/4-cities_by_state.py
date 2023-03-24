@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ""
 List all cities from a database
 """
