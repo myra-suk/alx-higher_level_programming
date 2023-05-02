@@ -1,21 +1,15 @@
 #!/usr/bin/python3
 """
-Python script that shows the last 10 commits of a repository
-in GitHub
+Python script that takes 2 arguments in order to solve the given challenge
 """
-from requests import get, auth
-import sys
 
+import requests
+from sys import argv
 
-if __name__ == "__main__":
-    try:
-        repo = sys.argv[1]
-        owner = sys.argv[2]
-        url = 'https://api.github.com/repos/{}/{}/commits'.format(owner, repo)
-        r = get(url)
-        json_o = r.json()
-        for i in range(0, 10):
-            print("{}: {}".format(json_o[i].get('sha'), json_o[i].get('commit')
-                                  .get('author').get('name')))
-    except ValueError:
-        pass
+if __name__ == '__main__':
+    url = "https://api.github.com/repos/{}/{}/commits".format(argv[2], argv[1])
+    r = requests.get(url)
+    commits = r.json()
+    for commit in commits[:10]:
+        print(commit.get('sha'), end=': ')
+        print(commit.get('commit').get('author').get('name'))
